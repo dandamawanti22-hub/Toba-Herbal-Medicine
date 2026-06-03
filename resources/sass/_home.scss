@@ -1,0 +1,111 @@
+.frontend {
+
+    .hero {
+        height: 90vh;
+        background: url('/images/frontendhome.jpg') center/cover no-repeat;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+        position: relative;
+    }
+
+    .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0,0,0,0.5);
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 2;
+    }
+
+    .hero h1 {
+        font-size: 48px;
+        font-weight: bold;
+    }
+
+    .search-box {
+        display: flex;
+        justify-content: center;
+    }
+
+    .search-box input {
+        width: 400px;
+        padding: 12px;
+        border-radius: 25px 0 0 25px;
+        border: none;
+    }
+
+    .search-box button {
+        padding: 12px 20px;
+        border: none;
+        background: green;
+        color: white;
+        border-radius: 0 25px 25px 0;
+    }
+
+    .section {
+        padding: 40px;
+    }
+
+    .card-grid {
+        display: flex;
+        gap: 30px;
+    }
+
+    .card-item {
+        width: 200px;
+        border-radius: 15px;
+        overflow: hidden;
+        background: white;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        text-align: center;
+    }
+
+    .card-item img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+    }
+
+    .section-box {
+        margin-top: -80px;
+        padding: 40px;
+        background: #f8f9fa;
+        border-radius: 30px 30px 0 0;
+    }
+
+    .modern-card {
+        position: relative;
+        border-radius: 20px;
+        overflow: hidden;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .modern-card img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+    }
+
+    .modern-card:hover {
+        transform: scale(1.05);
+    }
+
+    .card-overlay {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        padding: 15px;
+        background: rgba(0,0,0,0.6);
+        color: white;
+        text-align: center;
+        font-weight: bold;
+    }
+
+}
