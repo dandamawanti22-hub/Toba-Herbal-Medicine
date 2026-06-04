@@ -6,9 +6,9 @@
     <div class="card shadow p-4">
         <h3 class="mb-4">Edit Data Herbal</h3>
 
-        <form action="/herbal/{{ $herbal->id }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            @method('PUT')
+        <form action="/admin/herbal/{{ $herbal->id }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        @method('PUT')
 
             <!-- Nama Herbal -->
             <div class="mb-3">

@@ -10,27 +10,26 @@ use App\Models\Resep;
 class HerbalController extends Controller
 {
     // =========================
-    // TAMPIL DATA
+    // TAMPIL DATA ADMIN HERBAL
     // =========================
-
     public function index(Request $request)
     {
         $penyakit_id = $request->penyakit;
 
         if ($penyakit_id) {
-            $data = \App\Models\Herbal::join('herbal_penyakit', 'herbal.id', '=', 'herbal_penyakit.herbal_id')
+            $data = Herbal::join('herbal_penyakit', 'herbal.id', '=', 'herbal_penyakit.herbal_id')
                 ->where('herbal_penyakit.penyakit_id', $penyakit_id)
                 ->select('herbal.*')
                 ->get();
         } else {
-            $data = \App\Models\Herbal::all();
+            $data = Herbal::all();
         }
 
-        return view('herbal.index', compact('data')); 
+        return view('herbal.index', compact('data'));
     }
 
     // =========================
-    // FORM TAMBAH
+    // FORM TAMBAH HERBAL
     // =========================
     public function create()
     {
@@ -39,44 +38,42 @@ class HerbalController extends Controller
     }
 
     // =========================
-    // SIMPAN DATA
+    // SIMPAN DATA HERBAL
     // =========================
     public function store(Request $request)
     {
         $request->validate([
             'nama_herbal' => 'required',
-            'gambar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
+            'nama_latin' => 'nullable',
+            'khasiat' => 'nullable',
+            'gambar' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'penyakit' => 'nullable|array',
         ]);
 
-        // upload gambar
         if ($request->hasFile('gambar')) {
             $file = $request->file('gambar');
-            $namaFile = time().'_'.$file->getClientOriginalName();
+            $namaFile = time() . '_' . $file->getClientOriginalName();
             $file->move(public_path('images'), $namaFile);
         } else {
             $namaFile = null;
         }
 
-        // simpan herbal
         $herbal = Herbal::create([
             'nama_herbal' => $request->nama_herbal,
             'nama_latin' => $request->nama_latin,
             'khasiat' => $request->khasiat,
-            'cara_pembuatan' => $request->cara_pembuatan,
-            'cara_penggunaan' => $request->cara_penggunaan,
             'gambar' => $namaFile,
         ]);
 
-        // simpan relasi penyakit
         if ($request->penyakit) {
             $herbal->penyakit()->attach($request->penyakit);
         }
 
-        return redirect('/herbal')->with('success', 'Data herbal berhasil ditambah');
+        return redirect('/admin/herbal')->with('success', 'Data herbal berhasil ditambah');
     }
 
     // =========================
-    // FORM EDIT
+    // FORM EDIT HERBAL
     // =========================
     public function edit($id)
     {
@@ -87,66 +84,68 @@ class HerbalController extends Controller
     }
 
     // =========================
-    // UPDATE DATA (FINAL FIX)
+    // UPDATE DATA HERBAL
     // =========================
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'nama_herbal' => 'required',
+            'nama_latin' => 'nullable',
+            'khasiat' => 'nullable',
+            'gambar' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'penyakit' => 'nullable|array',
+        ]);
+
         $herbal = Herbal::findOrFail($id);
 
-        // upload gambar baru (kalau ada)
         if ($request->hasFile('gambar')) {
-
-            // hapus gambar lama
-            if ($herbal->gambar && file_exists(public_path('images/'.$herbal->gambar))) {
-                unlink(public_path('images/'.$herbal->gambar));
+            if ($herbal->gambar && file_exists(public_path('images/' . $herbal->gambar))) {
+                unlink(public_path('images/' . $herbal->gambar));
             }
 
             $file = $request->file('gambar');
-            $namaFile = time().'_'.$file->getClientOriginalName();
+            $namaFile = time() . '_' . $file->getClientOriginalName();
             $file->move(public_path('images'), $namaFile);
 
             $herbal->gambar = $namaFile;
         }
 
-        // update data utama
-        $herbal->update([
-            'nama_herbal' => $request->nama_herbal,
-            'nama_latin' => $request->nama_latin,
-            'khasiat' => $request->khasiat,
-            'cara_pembuatan' => $request->cara_pembuatan,
-            'cara_penggunaan' => $request->cara_penggunaan,
-        ]);
+        $herbal->nama_herbal = $request->nama_herbal;
+        $herbal->nama_latin = $request->nama_latin;
+        $herbal->khasiat = $request->khasiat;
+        $herbal->save();
 
-        // 🔥 UPDATE RELASI (INI YANG PENTING)
         $herbal->penyakit()->sync($request->penyakit ?? []);
 
-        return redirect('/herbal')->with('success', 'Data herbal berhasil diupdate');
+        return redirect('/admin/herbal')->with('success', 'Data herbal berhasil diupdate');
     }
 
     // =========================
-    // HAPUS DATA
+    // HAPUS DATA HERBAL
     // =========================
     public function destroy($id)
     {
         $herbal = Herbal::findOrFail($id);
 
-        // hapus gambar
-        if ($herbal->gambar && file_exists(public_path('images/'.$herbal->gambar))) {
-            unlink(public_path('images/'.$herbal->gambar));
+        if ($herbal->gambar && file_exists(public_path('images/' . $herbal->gambar))) {
+            unlink(public_path('images/' . $herbal->gambar));
         }
+
+        $herbal->penyakit()->detach();
 
         $herbal->delete();
 
-        return redirect('/herbal')->with('success', 'Data berhasil dihapus');
+        return redirect('/admin/herbal')->with('success', 'Data herbal berhasil dihapus');
     }
 
+    // =========================
+    // DETAIL HERBAL USER
+    // =========================
     public function show($id)
     {
         $herbal = Herbal::with('penyakit')->findOrFail($id);
 
-        $reseps = Resep::whereHas('herbal', function($q) use ($id) {
-            $q->where('herbal_id', $id);
-        })->get();
+        $reseps = Resep::where('herbal_id', $id)->get();
 
         return view('frontend.detail_herbal', compact('herbal', 'reseps'));
     }
