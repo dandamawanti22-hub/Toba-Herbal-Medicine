@@ -147,19 +147,52 @@
 
             <!-- MOBILE BUTTON -->
             <div class="md:hidden">
-                <button class="text-2xl text-slate-700">
+                <button id="menuBtn" class="text-2xl text-slate-700">
                     ☰
                 </button>
             </div>
 
-        </div>
-
     </nav>
+
+    <!-- MOBILE MENU -->
+    <div id="mobileMenu"
+        class="hidden fixed top-28 left-5 right-5 bg-white rounded-2xl shadow-xl z-50 p-5 md:hidden">
+
+        <a href="/" 
+        class="block py-3 text-gray-700">
+        Home
+        </a>
+
+        <a href="/penyakit" 
+        class="block py-3 text-gray-700">
+        Penyakit
+        </a>
+
+        <a href="/herbal" 
+        class="block py-3 text-gray-700">
+        Herbal
+        </a>
+
+        <a href="/resep" 
+        class="block py-3 text-gray-700">
+        Resep
+        </a>
+
+    </div>
 
     <!-- ================= CONTENT ================= -->
     <main class="pt-32 relative z-0">
         @yield('content')
     </main>
+
+    <script>
+    const btn = document.getElementById('menuBtn');
+    const menu = document.getElementById('mobileMenu');
+
+    btn.addEventListener('click', () => {
+        menu.classList.toggle('hidden');
+    });
+    </script>
 
 </body>
 </html>
