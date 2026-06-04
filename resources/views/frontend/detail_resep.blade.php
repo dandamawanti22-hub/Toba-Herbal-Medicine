@@ -239,13 +239,58 @@
 
             </section>
 
-           <!-- ================= BAGIAN 03 ================= -->
+
+            <!-- ================= HASIL RAMUAN ================= -->
+
+            @if($data->gambar)
+
             <section>
 
                 <div class="flex items-center gap-8 mb-16">
 
                     <div class="shrink-0 text-sm font-bold text-emerald-600 border-b-2 border-emerald-600 pb-1">
                         03
+                    </div>
+
+                    <h3 class="text-sm font-bold uppercase tracking-[0.2em] text-slate-700">
+                        Hasil Ramuan
+                    </h3>
+
+                    <div class="h-px bg-slate-200 flex-1"></div>
+
+                </div>
+
+
+                <div class="flex justify-center">
+
+
+                    <img 
+                    src="{{ asset('images/'.$data->gambar) }}"
+
+                    class="
+                    w-[500px]
+                    h-[330px]
+                    object-cover
+                    rounded-[35px]
+                    shadow-2xl
+                    ">
+
+
+                </div>
+
+
+            </section>
+
+            @endif
+
+
+           <!-- ================= BAGIAN 04 ================= -->
+            <section>
+
+                <div class="flex items-center gap-8 mb-16">
+
+                    <div class="shrink-0 text-sm font-bold text-emerald-600 border-b-2 border-emerald-600 pb-1">
+                        04
                     </div>
 
                     <h3 class="text-sm font-bold uppercase tracking-[0.2em] text-slate-700">

@@ -380,6 +380,7 @@ class DatabaseSeeder extends Seeder
                 'herbal_id'=>2,
                 'penyakit_id'=>1,
                 'nama_resep'=>'Resep Herbal Asam Lambung',
+                'gambar'=>'ramuan asam lambung.png',
                 'alat_bahan'=>'Temulawak, Temu Hitam, Gula Merah, Daun Pandan',
                 'cara_pembuatan'=>"Cuci temulawak dan temu hitam hingga bersih.\nKupas tipis temulawak dan temu hitam, lalu iris kecil-kecil.\nMasukkan temulawak, temu hitam, daun pandan, dan gula merah ke dalam panci.\nTambahkan air sebanyak ± 500 ml.\nRebus selama 15–20 menit hingga air berubah warna dan aroma herbal keluar.\nAduk sesekali agar sari herbal tercampur merata.\nSetelah matang, angkat lalu saring air rebusan ke dalam gelas.\nDiamkan beberapa menit hingga hangat sebelum diminum.",
                 'cara_penggunaan'=>"Minum ramuan dalam keadaan hangat.\nKonsumsi sebanyak 1 gelas, 2 kali sehari pagi dan malam.\nMinum secara rutin selama gejala asam lambung masih terasa.\nHindari makanan pedas, asam, dan berminyak berlebihan.",
@@ -389,6 +390,7 @@ class DatabaseSeeder extends Seeder
                 'herbal_id'=>3,
                 'penyakit_id'=>2,
                 'nama_resep'=>'Resep Herbal Ginjal',
+                'gambar'=>'ramuan ginjal.png',
                 'alat_bahan'=>'Kumis Kucing, Daun Keji Beling, Daun Salam',
                 'cara_pembuatan'=>"Cuci kumis kucing, daun keji beling, dan daun salam hingga bersih.\nPotong kecil daun keji beling agar sari daun mudah keluar.\nMasukkan semua bahan ke dalam panci.\nTambahkan air sebanyak ± 600 ml.\nRebus selama 15–20 menit hingga air rebusan berubah warna.\nAduk sesekali agar sari herbal tercampur rata.\nSetelah matang, angkat dan saring air rebusan ke dalam gelas.\nDiamkan beberapa menit hingga hangat sebelum diminum.",
                 'cara_penggunaan'=>"Minum ramuan dalam keadaan hangat.\nKonsumsi sebanyak 1 gelas, 2 kali sehari pagi dan malam.\nMinum secara rutin untuk membantu menjaga kesehatan ginjal.\nPerbanyak minum air putih dan kurangi makanan terlalu asin.",
@@ -398,6 +400,7 @@ class DatabaseSeeder extends Seeder
                 'herbal_id'=>5,
                 'penyakit_id'=>3,
                 'nama_resep'=>'Resep Herbal Sesak Nafas',
+                'gambar'=>'ramuan asma.png',
                 'alat_bahan'=>'Kencur, Cengkeh, Kulit Manis, Gula Batu, Jahe Merah',
                 'cara_pembuatan'=>"Cuci kencur dan jahe merah hingga bersih.\nKupas tipis kencur dan jahe merah, lalu iris kecil-kecil.\nMasukkan kencur, jahe merah, cengkeh, kulit manis, dan gula batu ke dalam panci.\nTambahkan air sebanyak ± 600 ml.\nRebus selama 15–20 menit hingga aroma rempah keluar.\nAduk perlahan agar sari rempah tercampur rata.\nSetelah matang, angkat lalu saring air rebusan ke dalam gelas.\nDiamkan beberapa menit hingga hangat sebelum diminum.",
                 'cara_penggunaan'=>"Minum ramuan dalam keadaan hangat.\nKonsumsi sebanyak 1 gelas, 3 kali sehari pagi, siang, dan malam.\nMinum secara rutin selama gejala sesak napas masih terasa.\nHindari udara dingin, asap rokok, dan debu berlebihan.",
@@ -407,6 +410,7 @@ class DatabaseSeeder extends Seeder
                 'herbal_id'=>8,
                 'penyakit_id'=>4,
                 'nama_resep'=>'Resep Herbal Diabetes',
+                'gambar'=>'ramuan diabetes.png',
                 'alat_bahan'=>'Daun Alpukat, Jahe, Bawang Putih',
                 'cara_pembuatan'=>"Cuci daun alpukat hingga bersih.\nKupas jahe dan bawang putih lalu iris tipis.\nMasukkan daun alpukat, jahe, dan bawang putih ke dalam panci.\nTambahkan air sebanyak ± 700 ml.\nRebus selama 15–20 menit hingga air rebusan berubah warna.\nAduk sesekali agar sari herbal tercampur merata.\nSetelah matang, angkat lalu saring air rebusan ke dalam gelas.\nDiamkan beberapa menit hingga hangat sebelum diminum.",
                 'cara_penggunaan'=>"Minum ramuan dalam keadaan hangat.\nKonsumsi sebanyak ½ gelas, 3 kali sehari pagi, siang, dan malam.\nMinum secara rutin disertai pola makan sehat.\nRamuan ini sebagai pendamping, bukan pengganti obat dokter.",
@@ -416,6 +420,7 @@ class DatabaseSeeder extends Seeder
                 'herbal_id'=>1,
                 'penyakit_id'=>5,
                 'nama_resep'=>'Resep Herbal Kolesterol',
+                'gambar'=>'ramuan kolestrol.png',
                 'alat_bahan'=>'Jahe, Bawang Putih, Ketumbar',
                 'cara_pembuatan'=>"Cuci jahe hingga bersih lalu iris tipis.\nKupas bawang putih kemudian memarkan sedikit.\nMasukkan jahe, bawang putih, dan ketumbar ke dalam gelas atau wadah.\nTuangkan air panas sebanyak ± 500 ml.\nTutup wadah lalu rendam selama semalaman.\nKeesokan harinya, saring air rendaman sebelum diminum.",
                 'cara_penggunaan'=>"Minum ramuan sebanyak 1 gelas.\nKonsumsi sebanyak 3 kali sehari pagi, siang, dan malam.\nDisarankan diminum sebelum makan.\nKurangi makanan berminyak dan tinggi lemak.",
@@ -425,6 +430,7 @@ class DatabaseSeeder extends Seeder
                 'herbal_id'=>11,
                 'penyakit_id'=>6,
                 'nama_resep'=>'Resep Herbal Kanker Rahim',
+                'gambar'=>'ramuan kanker rahim.png',
                 'alat_bahan'=>'Daun Sirsak, Temu Putih',
                 'cara_pembuatan'=>"Cuci daun sirsak dan temu putih hingga bersih.\nKupas tipis temu putih lalu iris kecil-kecil.\nMasukkan daun sirsak dan temu putih ke dalam panci.\nTambahkan air sebanyak ± 700 ml.\nRebus selama 15–20 menit hingga air rebusan berubah warna.\nAduk sesekali agar sari herbal tercampur merata.\nSetelah matang, angkat lalu saring air rebusan ke dalam gelas.\nDiamkan beberapa menit hingga hangat sebelum diminum.",
                 'cara_penggunaan'=>"Minum ramuan sebanyak ½ gelas dalam keadaan hangat.\nKonsumsi sebanyak 3 kali sehari pagi, siang, dan malam.\nRamuan ini digunakan sebagai pendamping kesehatan tubuh.\nTetap lakukan pemeriksaan medis secara rutin.",
@@ -435,6 +441,7 @@ class DatabaseSeeder extends Seeder
                 'herbal_id'=>9,
                 'penyakit_id'=>7,
                 'nama_resep'=>'Ramuan Herbal Hipertensi',
+                'gambar'=>'ramuan hipertensi.png',
                 'alat_bahan'=>'Bawang Putih, Air Hangat',
                 'cara_pembuatan'=>"Siapkan 2 siung bawang putih segar.\nKupas kulit bawang putih hingga bersih.\nCuci bawang putih menggunakan air bersih.\nTumbuk bawang putih menggunakan ulekan hingga halus.\nMasukkan bawang putih ke dalam gelas.\nTuangkan air hangat sekitar 200 ml.\nAduk hingga tercampur rata.\nDiamkan selama 5 menit sebelum diminum.",
                 'cara_penggunaan'=>"Minum ramuan 1 kali sehari pada pagi hari sebelum makan.\nKonsumsi secara rutin setiap hari.\nRamuan bawang putih membantu melancarkan aliran darah dan membantu menjaga tekanan darah tetap stabil."
@@ -446,6 +453,7 @@ class DatabaseSeeder extends Seeder
                 'penyakit_id'=>8,
 
                 'nama_resep'=>'Ramuan Temulawak untuk Sakit Kuning',
+                'gambar'=>'ramuan sakit kuning.png',
 
                 'alat_bahan'=>'Temulawak, Air, Madu',
 
@@ -460,6 +468,7 @@ class DatabaseSeeder extends Seeder
                 'penyakit_id'=>9,
 
                 'nama_resep'=>'Ramuan Kunyit untuk Maag',
+                'gambar'=>'ramuan maag.png',
 
                 'alat_bahan'=>'Kunyit, Air, Madu',
 
@@ -474,6 +483,7 @@ class DatabaseSeeder extends Seeder
                 'penyakit_id'=>10,
 
                 'nama_resep'=>'Ramuan Herbal untuk Kesehatan Jantung',
+                'gambar'=>'ramuan jantung.png',
 
                 'alat_bahan'=>'Bawang Putih, Teh Hijau, Kunyit, Air',
 
@@ -487,6 +497,7 @@ class DatabaseSeeder extends Seeder
                 'herbal_id'=>19,
                 'penyakit_id'=>11,
                 'nama_resep'=>'Ramuan Daun Jambu Biji untuk Diare',
+                'gambar'=>'ramuan diare.png',
                 'alat_bahan'=>'Daun Jambu Biji, Air, Panci, Gelas, Saringan',
                 'cara_pembuatan'=>"Pilih 7 lembar daun jambu biji yang masih muda dan segar.\nCuci daun menggunakan air mengalir hingga bersih.\nMasukkan daun jambu biji ke dalam panci.\nTambahkan 2 gelas air bersih.\nRebus dengan api sedang selama kurang lebih 15 menit hingga air tersisa sekitar 1 gelas.\nMatikan api lalu diamkan hingga sedikit hangat.\nSaring air rebusan ke dalam gelas.\nRamuan siap diminum.",
                 'cara_penggunaan'=>"Minum air rebusan daun jambu biji sebanyak 2 kali sehari pagi dan sore.\nMinum dalam keadaan hangat agar lebih nyaman di perut.\nKonsumsi sampai gejala diare berkurang.\nJika diare berat atau disertai darah, segera periksa ke dokter."
@@ -497,6 +508,7 @@ class DatabaseSeeder extends Seeder
                 'herbal_id'=>1,
                 'penyakit_id'=>12,
                 'nama_resep'=>'Ramuan Jahe Serai untuk Flu',
+                'gambar'=>'ramuan flu.png',
                 'alat_bahan'=>'Jahe, Serai, Madu, Air, Panci, Gelas, Saringan',
                 'cara_pembuatan'=>"Cuci jahe dan serai hingga bersih.\nMemarkan jahe dan serai agar sari herbal mudah keluar.\nMasukkan jahe dan serai ke dalam panci.\nTambahkan 600 ml air.\nRebus selama 10–15 menit hingga aroma herbal keluar.\nSaring air rebusan ke dalam gelas.\nTambahkan madu lalu aduk hingga merata.",
                 'cara_penggunaan'=>"Minum ramuan dalam keadaan hangat.\nKonsumsi 1–2 kali sehari saat gejala flu terasa.\nGunakan sebagai pendamping istirahat cukup dan konsumsi makanan bergizi."
@@ -507,6 +519,7 @@ class DatabaseSeeder extends Seeder
                 'herbal_id'=>1,
                 'penyakit_id'=>13,
                 'nama_resep'=>'Ramuan Jahe Jeruk Nipis untuk Batuk',
+                'gambar'=>'ramuan batuk.png',
                 'alat_bahan'=>'Jahe, Jeruk Nipis, Madu, Air, Panci, Gelas, Sendok, Saringan',
                 'cara_pembuatan'=>"Cuci jahe hingga bersih lalu memarkan menggunakan ulekan.\nMasukkan jahe ke dalam panci kecil.\nTambahkan 1 gelas air.\nRebus selama sekitar 10 menit hingga aroma jahe keluar.\nSaring air rebusan ke dalam gelas.\nPeras jeruk nipis lalu campurkan ke dalam air jahe.\nTambahkan madu dan aduk sampai rata.",
                 'cara_penggunaan'=>"Minum ramuan dalam keadaan hangat.\nKonsumsi 2 kali sehari, pagi dan malam.\nMinum secara rutin sampai gejala batuk berkurang."
@@ -517,6 +530,7 @@ class DatabaseSeeder extends Seeder
                 'herbal_id'=>15,
                 'penyakit_id'=>14,
                 'nama_resep'=>'Ramuan Daun Salam Jahe untuk Asam Urat',
+                'gambar'=>'ramuan asam urat.png',
                 'alat_bahan'=>'Daun Salam, Jahe, Serai, Madu, Air, Panci, Gelas, Saringan',
                 'cara_pembuatan'=>"Cuci daun salam, jahe, dan serai hingga bersih.\nMemarkan jahe dan serai.\nMasukkan daun salam, jahe, dan serai ke dalam panci.\nTambahkan 600 ml air.\nRebus selama 15–20 menit hingga air berubah warna dan aroma herbal keluar.\nSaring air rebusan ke dalam gelas.\nTambahkan madu jika ingin rasa lebih enak.",
                 'cara_penggunaan'=>"Minum ramuan dalam keadaan hangat.\nKonsumsi 1–2 kali sehari.\nHindari makanan tinggi purin seperti jeroan, seafood berlebihan, dan daging merah berlebihan."
@@ -527,6 +541,7 @@ class DatabaseSeeder extends Seeder
                 'herbal_id'=>18,
                 'penyakit_id'=>15,
                 'nama_resep'=>'Ramuan Serai Jahe untuk Masuk Angin',
+                'gambar'=>'ramuan masuk angin.png',
                 'alat_bahan'=>'Serai, Jahe, Madu, Air, Panci, Gelas, Sendok, Saringan',
                 'cara_pembuatan'=>"Cuci serai dan jahe hingga bersih.\nMemarkan serai dan jahe agar sari herbal mudah keluar.\nMasukkan serai dan jahe ke dalam panci.\nTambahkan 2 gelas air.\nRebus selama 10–15 menit hingga air tersisa sekitar 1 gelas.\nSaring air rebusan ke dalam gelas.\nTambahkan madu lalu aduk hingga merata.",
                 'cara_penggunaan'=>"Minum ramuan dalam keadaan hangat.\nKonsumsi 1–2 kali sehari, misalnya pagi dan malam.\nMinum secara rutin selama gejala masih dirasakan."
@@ -537,6 +552,7 @@ class DatabaseSeeder extends Seeder
                 'herbal_id'=>20,
                 'penyakit_id'=>16,
                 'nama_resep'=>'Ramuan Chamomile untuk Insomnia',
+                'gambar'=>'ramuan insomnia.png',
                 'alat_bahan'=>'Bunga Chamomile, Air Panas, Madu, Gelas, Sendok, Saringan',
                 'cara_pembuatan'=>"Masukkan 1 sendok makan bunga chamomile kering ke dalam gelas.\nTuangkan 1 gelas air panas sekitar 200 ml.\nTutup gelas dan diamkan selama 5–10 menit agar sari chamomile keluar.\nSaring air seduhan jika diperlukan.\nTambahkan madu lalu aduk hingga rata.",
                 'cara_penggunaan'=>"Minum ramuan 30–60 menit sebelum tidur.\nKonsumsi 1 kali sehari pada malam hari.\nHindari penggunaan gadget dan kafein sebelum tidur agar hasil lebih baik."
@@ -547,6 +563,7 @@ class DatabaseSeeder extends Seeder
                 'herbal_id'=>14,
                 'penyakit_id'=>17,
                 'nama_resep'=>'Ramuan Madu Minyak Kelapa untuk Sariawan',
+                'gambar'=>'ramuan sariawan.png',
                 'alat_bahan'=>'Madu, Minyak Kelapa, Wadah Bersih, Sendok',
                 'cara_pembuatan'=>"Siapkan madu dan minyak kelapa dalam wadah bersih.\nCampurkan 1 sendok teh madu dengan beberapa tetes minyak kelapa.\nAduk hingga kedua bahan tercampur merata.\nRamuan siap digunakan.",
                 'cara_penggunaan'=>"Oleskan ramuan pada bagian sariawan sebanyak 2 kali sehari.\nGunakan setelah mulut dibersihkan.\nHindari makanan pedas dan asam selama sariawan masih terasa."

@@ -18,6 +18,7 @@ class Resep extends Model
         'nama_resep',
         'cara_pembuatan',
         'cara_penggunaan',
+        'gambar',
     ];
 
     public function herbal()
