@@ -348,7 +348,7 @@
         <div class="py-20 text-center">
 
             <p class="text-sm font-semibold text-slate-500">
-                Warisan Toba © 2024
+                Warisan Toba
             </p>
 
         </div>

@@ -134,14 +134,6 @@
                     Resep
                 </a>
 
-                <!-- LOGIN ADMIN -->
-                <a href="/login"
-                title="Login Admin"
-                class="w-10 h-10 bg-green-700 text-white rounded-full 
-                        flex items-center justify-center
-                        hover:bg-green-800 transition shadow-md">
-                    👤
-                </a>
 
             </div>
 
