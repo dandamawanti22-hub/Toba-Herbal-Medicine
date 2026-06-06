@@ -9,10 +9,10 @@
             <a href="/admin/herbal/create" class="btn btn-primary">+ Tambah Herbal</a>
         </div>
 
-        <table class="table table-bordered table-striped">
+        <table class="table table-bordered table-striped align-middle text-center">
             <thead class="table-dark">
                 <tr>
-                    <th>No</th>
+                    <th>Kode</th>
                     <th>Gambar</th>
                     <th>Nama Herbal</th>
                     <th>Nama Latin</th>
@@ -20,10 +20,13 @@
                     <th>Aksi</th>
                 </tr>
             </thead>
+
             <tbody>
-                @foreach($data as $index => $item)
+                @foreach($data as $item)
                 <tr>
-                    <td>{{ $index + 1 }}</td>
+                    <td>
+                        <strong>{{ $item->kode_herbal }}</strong>
+                    </td>
 
                     <td>
                         @if($item->gambar)
@@ -34,26 +37,39 @@
                     </td>
 
                     <td>{{ $item->nama_herbal }}</td>
+
                     <td>{{ $item->nama_latin }}</td>
 
                     <td>
                         @foreach($item->penyakit as $p)
-                            <span class="badge bg-success">{{ $p->nama_penyakit }}</span>
+                            <span class="badge bg-success">
+                                {{ $p->nama_penyakit }}
+                            </span>
                         @endforeach
                     </td>
 
                     <td>
-                        <a href="/admin/herbal/{{ $item->id }}/edit" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="/admin/herbal/{{ $item->id }}/edit" 
+                           class="btn btn-warning btn-sm">
+                            Edit
+                        </a>
 
-                        <form action="/admin/herbal/{{ $item->id }}" method="POST" style="display:inline;">
+                        <form action="/admin/herbal/{{ $item->id }}" 
+                              method="POST" 
+                              style="display:inline;">
                             @csrf
                             @method('DELETE')
-                            <button class="btn btn-danger btn-sm">Hapus</button>
+
+                            <button class="btn btn-danger btn-sm"
+                                    onclick="return confirm('Yakin hapus?')">
+                                Hapus
+                            </button>
                         </form>
                     </td>
                 </tr>
                 @endforeach
             </tbody>
+
         </table>
     </div>
 </div>

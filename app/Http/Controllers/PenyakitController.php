@@ -7,35 +7,30 @@ use App\Models\Penyakit;
 
 class PenyakitController extends Controller
 {
-    // =======================
-    // TAMPIL DATA
-    // =======================
     public function index()
     {
         $data = Penyakit::all();
         return view('penyakit.index', compact('data'));
     }
 
-    // =======================
-    // FORM TAMBAH
-    // =======================
     public function create()
     {
         return view('penyakit.create');
     }
 
-    // =======================
-    // SIMPAN DATA
-    // =======================
     public function store(Request $request)
     {
         $request->validate([
+            'kode_penyakit' => 'required|unique:penyakit,kode_penyakit',
             'nama_penyakit' => 'required',
             'deskripsi' => 'required',
+            'gejala' => 'nullable',
+            'penyebab' => 'nullable',
+            'pengobatan' => 'nullable',
+            'pencegahan' => 'nullable',
             'gambar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
         ]);
 
-        // upload gambar
         if ($request->hasFile('gambar')) {
             $file = $request->file('gambar');
             $namaFile = time() . '_' . $file->getClientOriginalName();
@@ -44,62 +39,64 @@ class PenyakitController extends Controller
             $namaFile = null;
         }
 
-        // simpan data
         Penyakit::create([
+            'kode_penyakit' => $request->kode_penyakit,
             'nama_penyakit' => $request->nama_penyakit,
             'deskripsi' => $request->deskripsi,
+            'gejala' => $request->gejala,
+            'penyebab' => $request->penyebab,
+            'pengobatan' => $request->pengobatan,
+            'pencegahan' => $request->pencegahan,
             'gambar' => $namaFile,
         ]);
 
         return redirect('/admin/penyakit')->with('success', 'Data berhasil ditambah');
     }
 
-    // =======================
-    // FORM EDIT
-    // =======================
     public function edit($id)
     {
         $data = Penyakit::findOrFail($id);
         return view('penyakit.edit', compact('data'));
     }
 
-    // =======================
-    // UPDATE DATA
-    // =======================
     public function update(Request $request, $id)
     {
+        $data = Penyakit::findOrFail($id);
+
         $request->validate([
+            'kode_penyakit' => 'required|unique:penyakit,kode_penyakit,' . $data->id,
             'nama_penyakit' => 'required',
             'deskripsi' => 'required',
+            'gejala' => 'nullable',
+            'penyebab' => 'nullable',
+            'pengobatan' => 'nullable',
+            'pencegahan' => 'nullable',
             'gambar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
         ]);
 
-        $data = Penyakit::findOrFail($id);
-
-        // cek jika upload gambar baru
         if ($request->hasFile('gambar')) {
             $file = $request->file('gambar');
             $namaFile = time() . '_' . $file->getClientOriginalName();
             $file->move(public_path('images'), $namaFile);
-
             $data->gambar = $namaFile;
         }
 
+        $data->kode_penyakit = $request->kode_penyakit;
         $data->nama_penyakit = $request->nama_penyakit;
         $data->deskripsi = $request->deskripsi;
+        $data->gejala = $request->gejala;
+        $data->penyebab = $request->penyebab;
+        $data->pengobatan = $request->pengobatan;
+        $data->pencegahan = $request->pencegahan;
         $data->save();
 
         return redirect('/admin/penyakit')->with('success', 'Data berhasil diupdate');
     }
 
-    // =======================
-    // HAPUS DATA
-    // =======================
     public function destroy($id)
     {
         $data = Penyakit::findOrFail($id);
 
-        // hapus gambar jika ada
         if ($data->gambar && file_exists(public_path('images/' . $data->gambar))) {
             unlink(public_path('images/' . $data->gambar));
         }
@@ -109,9 +106,6 @@ class PenyakitController extends Controller
         return redirect('/admin/penyakit')->with('success', 'Data berhasil dihapus');
     }
 
-    // =======================
-    // DETAIL PENYAKIT (FIX UTAMA)
-    // =======================
     public function show($id)
     {
         $data = Penyakit::with('resep.bahan')->findOrFail($id);

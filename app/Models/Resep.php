@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Bahan;
 use App\Models\Penyakit;
+use App\Models\Herbal;
 
 class Resep extends Model
 {
@@ -14,7 +15,7 @@ class Resep extends Model
     protected $table = 'resep';
 
     protected $fillable = [
-        'herbal_id',
+        'kode_resep',
         'nama_resep',
         'cara_pembuatan',
         'cara_penggunaan',
@@ -23,7 +24,10 @@ class Resep extends Model
 
     public function herbal()
     {
-        return $this->belongsTo(\App\Models\Herbal::class, 'herbal_id');
+        return $this->belongsToMany(
+            Herbal::class,
+            'resep_herbal'
+        );
     }
 
     public function bahan()
@@ -32,7 +36,6 @@ class Resep extends Model
                     ->withPivot('jumlah');
     }
 
-    // TAMBAHKAN INI
     public function penyakit()
     {
         return $this->belongsTo(Penyakit::class);

@@ -4,38 +4,96 @@
 
 <div class="container">
     <div class="card p-4 shadow">
-        <h3>Tambah Bahan</h3>
 
-        <!-- WAJIB tambahin enctype untuk upload gambar -->
+        <h3>Tambah Alat & Bahan</h3>
+
+
         <form action="/admin/bahan" method="POST" enctype="multipart/form-data">
             @csrf
 
-            <!-- NAMA -->
+
+            {{-- KODE --}}
+            <div class="mb-3">
+                <label>Kode</label>
+
+                <input 
+                    type="text" 
+                    name="kode" 
+                    class="form-control"
+                    placeholder="Contoh: B001 / A001"
+                    required>
+            </div>
+
+
+
+            {{-- NAMA --}}
             <div class="mb-3">
                 <label>Nama</label>
-                <input type="text" name="nama_bahan" class="form-control" required>
+
+                <input 
+                    type="text" 
+                    name="nama_bahan" 
+                    class="form-control" 
+                    required>
             </div>
 
-            <!-- TIPE -->
+
+
+            {{-- TIPE --}}
             <div class="mb-3">
+
                 <label>Tipe</label>
-                <select name="tipe" class="form-control" required>
-                    <option value="">-- Pilih Tipe --</option>
-                    <option value="bahan">Bahan</option>
-                    <option value="alat">Alat</option>
+
+                <select 
+                    name="tipe" 
+                    class="form-control" 
+                    required>
+
+                    <option value="">
+                        -- Pilih Tipe --
+                    </option>
+
+                    <option value="bahan">
+                        Bahan
+                    </option>
+
+                    <option value="alat">
+                        Alat
+                    </option>
+
                 </select>
+
             </div>
 
-            <!-- GAMBAR -->
+
+
+            {{-- GAMBAR --}}
             <div class="mb-3">
+
                 <label>Gambar</label>
-                <input type="file" name="gambar" class="form-control">
+
+                <input 
+                    type="file" 
+                    name="gambar" 
+                    class="form-control">
+
             </div>
 
-            <!-- BUTTON -->
-            <button class="btn btn-success">Simpan</button>
-            <a href="/admin/bahan" class="btn btn-secondary">Kembali</a>
+
+
+
+            <button class="btn btn-success">
+                Simpan
+            </button>
+
+
+            <a href="/admin/bahan" class="btn btn-secondary">
+                Kembali
+            </a>
+
+
         </form>
+
     </div>
 </div>
 

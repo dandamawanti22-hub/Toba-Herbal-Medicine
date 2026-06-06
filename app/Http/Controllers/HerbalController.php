@@ -9,9 +9,6 @@ use App\Models\Resep;
 
 class HerbalController extends Controller
 {
-    // =========================
-    // TAMPIL DATA ADMIN HERBAL
-    // =========================
     public function index(Request $request)
     {
         $penyakit_id = $request->penyakit;
@@ -28,21 +25,16 @@ class HerbalController extends Controller
         return view('herbal.index', compact('data'));
     }
 
-    // =========================
-    // FORM TAMBAH HERBAL
-    // =========================
     public function create()
     {
         $penyakit = Penyakit::all();
         return view('herbal.create', compact('penyakit'));
     }
 
-    // =========================
-    // SIMPAN DATA HERBAL
-    // =========================
     public function store(Request $request)
     {
         $request->validate([
+            'kode_herbal' => 'required|unique:herbal,kode_herbal',
             'nama_herbal' => 'required',
             'nama_latin' => 'nullable',
             'khasiat' => 'nullable',
@@ -59,6 +51,7 @@ class HerbalController extends Controller
         }
 
         $herbal = Herbal::create([
+            'kode_herbal' => $request->kode_herbal,
             'nama_herbal' => $request->nama_herbal,
             'nama_latin' => $request->nama_latin,
             'khasiat' => $request->khasiat,
@@ -72,9 +65,6 @@ class HerbalController extends Controller
         return redirect('/admin/herbal')->with('success', 'Data herbal berhasil ditambah');
     }
 
-    // =========================
-    // FORM EDIT HERBAL
-    // =========================
     public function edit($id)
     {
         $herbal = Herbal::with('penyakit')->findOrFail($id);
@@ -83,20 +73,18 @@ class HerbalController extends Controller
         return view('herbal.edit', compact('herbal', 'penyakit'));
     }
 
-    // =========================
-    // UPDATE DATA HERBAL
-    // =========================
     public function update(Request $request, $id)
     {
+        $herbal = Herbal::findOrFail($id);
+
         $request->validate([
+            'kode_herbal' => 'required|unique:herbal,kode_herbal,' . $herbal->id,
             'nama_herbal' => 'required',
             'nama_latin' => 'nullable',
             'khasiat' => 'nullable',
             'gambar' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'penyakit' => 'nullable|array',
         ]);
-
-        $herbal = Herbal::findOrFail($id);
 
         if ($request->hasFile('gambar')) {
             if ($herbal->gambar && file_exists(public_path('images/' . $herbal->gambar))) {
@@ -110,6 +98,7 @@ class HerbalController extends Controller
             $herbal->gambar = $namaFile;
         }
 
+        $herbal->kode_herbal = $request->kode_herbal;
         $herbal->nama_herbal = $request->nama_herbal;
         $herbal->nama_latin = $request->nama_latin;
         $herbal->khasiat = $request->khasiat;
@@ -120,9 +109,6 @@ class HerbalController extends Controller
         return redirect('/admin/herbal')->with('success', 'Data herbal berhasil diupdate');
     }
 
-    // =========================
-    // HAPUS DATA HERBAL
-    // =========================
     public function destroy($id)
     {
         $herbal = Herbal::findOrFail($id);
@@ -138,9 +124,6 @@ class HerbalController extends Controller
         return redirect('/admin/herbal')->with('success', 'Data herbal berhasil dihapus');
     }
 
-    // =========================
-    // DETAIL HERBAL USER
-    // =========================
     public function show($id)
     {
         $herbal = Herbal::with('penyakit')->findOrFail($id);

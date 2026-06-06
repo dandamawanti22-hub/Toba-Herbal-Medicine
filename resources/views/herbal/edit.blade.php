@@ -7,35 +7,59 @@
         <h3 class="mb-4">Edit Data Herbal</h3>
 
         <form action="/admin/herbal/{{ $herbal->id }}" method="POST" enctype="multipart/form-data">
-        @csrf
-        @method('PUT')
+            @csrf
+            @method('PUT')
 
-            <!-- Nama Herbal -->
+            <div class="mb-3">
+                <label>Kode Herbal</label>
+                <input 
+                    type="text" 
+                    name="kode_herbal" 
+                    class="form-control" 
+                    value="{{ $herbal->kode_herbal }}">
+            </div>
+
             <div class="mb-3">
                 <label>Nama Herbal</label>
-                <input type="text" name="nama_herbal" class="form-control" value="{{ $herbal->nama_herbal }}">
+                <input 
+                    type="text" 
+                    name="nama_herbal" 
+                    class="form-control" 
+                    value="{{ $herbal->nama_herbal }}">
             </div>
 
-            <!-- Nama Latin -->
             <div class="mb-3">
                 <label>Nama Latin</label>
-                <input type="text" name="nama_latin" class="form-control" value="{{ $herbal->nama_latin }}">
+                <input 
+                    type="text" 
+                    name="nama_latin" 
+                    class="form-control" 
+                    value="{{ $herbal->nama_latin }}">
             </div>
 
-            <!-- Khasiat -->
             <div class="mb-3">
                 <label>Khasiat</label>
-                <textarea name="khasiat" class="form-control">{{ $herbal->khasiat }}</textarea>
+                <textarea 
+                    name="khasiat" 
+                    class="form-control" 
+                    rows="4">{{ $herbal->khasiat }}</textarea>
             </div>
 
-            <!-- Gambar -->
             <div class="mb-3">
                 <label>Gambar</label><br>
-                <img src="{{ asset('images/' . $herbal->gambar) }}" width="120"><br><br>
-                <input type="file" name="gambar" class="form-control">
+
+                @if($herbal->gambar)
+                    <img src="{{ asset('images/' . $herbal->gambar) }}" width="120"><br><br>
+                @else
+                    <p>Tidak ada gambar</p>
+                @endif
+
+                <input 
+                    type="file" 
+                    name="gambar" 
+                    class="form-control">
             </div>
 
-            <!-- Pilih Penyakit -->
             <div class="mb-3">
                 <label>Pilih Penyakit</label>
 
@@ -43,7 +67,7 @@
                     @foreach($penyakit as $p)
                         <option value="{{ $p->id }}"
                             {{ $herbal->penyakit->contains($p->id) ? 'selected' : '' }}>
-                            {{ $p->nama_penyakit }}
+                            {{ $p->kode_penyakit }} - {{ $p->nama_penyakit }}
                         </option>
                     @endforeach
                 </select>
@@ -53,10 +77,14 @@
                 </small>
             </div>
 
-            <!-- TOMBOL (INI YANG KURANG) -->
             <div class="mt-3">
-                <button type="submit" class="btn btn-primary">Update</button>
-                <a href="/herbal" class="btn btn-secondary">Kembali</a>
+                <button type="submit" class="btn btn-primary">
+                    Update
+                </button>
+
+                <a href="/admin/herbal" class="btn btn-secondary">
+                    Kembali
+                </a>
             </div>
 
         </form>

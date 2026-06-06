@@ -36,9 +36,25 @@
 
                 <p class="text-lg font-medium italic border-l-4 border-emerald-200 pl-6 text-slate-700">
                     Berbasis bahan utama
+
                     <span class="text-slate-900 font-semibold not-italic">
-                        {{ $data->herbal->nama_herbal ?? 'Alami' }}
+
+                        @forelse($data->herbal as $h)
+
+                            {{ $h->nama_herbal }}
+
+                            @if(!$loop->last)
+                                ,
+                            @endif
+
+                        @empty
+
+                            Alami
+
+                        @endforelse
+
                     </span>
+
                 </p>
                 
                 <div class="flex gap-4 md:ml-auto">

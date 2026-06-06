@@ -12,9 +12,14 @@ class Penyakit extends Model
     protected $table = 'penyakit';
 
     protected $fillable = [
+        'kode_penyakit',
         'nama_penyakit',
         'deskripsi',
-        'gambar'
+        'gambar',
+        'gejala',
+        'penyebab',
+        'pengobatan',
+        'pencegahan',
     ];
 
     public function herbal()

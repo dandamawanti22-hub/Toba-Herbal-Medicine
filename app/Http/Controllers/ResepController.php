@@ -18,21 +18,31 @@ class ResepController extends Controller
     public function create()
     {
         $herbal = Herbal::all();
-        $bahan = Bahan::all(); // ✅ ambil semua bahan
+        $bahan = Bahan::all();
 
         return view('resep.create', compact('herbal', 'bahan'));
     }
 
     public function store(Request $request)
     {
+        $request->validate([
+            'kode_resep' => 'required|unique:resep,kode_resep',
+            'herbal' => 'required|array',
+            'nama_resep' => 'required',
+            'cara_pembuatan' => 'nullable',
+            'cara_penggunaan' => 'nullable',
+            'bahan' => 'nullable|array',
+        ]);
+
         $resep = Resep::create([
-            'herbal_id' => $request->herbal_id,
+            'kode_resep' => $request->kode_resep,
             'nama_resep' => $request->nama_resep,
             'cara_pembuatan' => $request->cara_pembuatan,
             'cara_penggunaan' => $request->cara_penggunaan,
         ]);
 
-        // ✅ SIMPAN BAHAN + JUMLAH (VERSI BARU)
+        $resep->herbal()->attach($request->herbal);
+
         $dataBahan = [];
 
         if ($request->bahan) {
@@ -52,7 +62,7 @@ class ResepController extends Controller
 
     public function edit($id)
     {
-        $data = Resep::with('bahan')->findOrFail($id);
+        $data = Resep::with('bahan', 'herbal')->findOrFail($id);
         $herbal = Herbal::all();
         $bahan = Bahan::all();
 
@@ -63,17 +73,26 @@ class ResepController extends Controller
     {
         $resep = Resep::findOrFail($id);
 
+        $request->validate([
+            'kode_resep' => 'required|unique:resep,kode_resep,' . $resep->id,
+            'herbal' => 'required|array',
+            'nama_resep' => 'required',
+            'cara_pembuatan' => 'nullable',
+            'cara_penggunaan' => 'nullable',
+            'bahan' => 'nullable|array',
+        ]);
+
         $resep->update([
-            'herbal_id' => $request->herbal_id,
+            'kode_resep' => $request->kode_resep,
             'nama_resep' => $request->nama_resep,
             'cara_pembuatan' => $request->cara_pembuatan,
             'cara_penggunaan' => $request->cara_penggunaan,
         ]);
 
-        // 🔥 reset relasi
+        $resep->herbal()->sync($request->herbal);
+
         $resep->bahan()->detach();
 
-        // 🔥 simpan ulang
         $dataBahan = [];
 
         if ($request->bahan) {
@@ -94,6 +113,10 @@ class ResepController extends Controller
     public function destroy($id)
     {
         $resep = Resep::findOrFail($id);
+
+        $resep->herbal()->detach();
+        $resep->bahan()->detach();
+
         $resep->delete();
 
         return redirect('/admin/resep')->with('success', 'Data berhasil dihapus');

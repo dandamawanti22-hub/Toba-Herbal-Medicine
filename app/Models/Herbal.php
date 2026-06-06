@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Resep;
+use App\Models\Penyakit;
 
 class Herbal extends Model
 {
@@ -12,21 +14,23 @@ class Herbal extends Model
     protected $table = 'herbal';
 
     protected $fillable = [
-    'nama_herbal',
-    'nama_latin',
-    'khasiat',
-    'gambar'
-];
-    // RELASI KE RESEP (many to many)
+        'kode_herbal',
+        'nama_herbal',
+        'nama_latin',
+        'khasiat',
+        'gambar',
+    ];
+
     public function resep()
     {
-        return $this->belongsToMany(Resep::class, 'resep_herbal');
+        return $this->belongsToMany(
+            Resep::class,
+            'resep_herbal'
+        );
     }
 
     public function penyakit()
     {
-        
-    return $this->belongsToMany(\App\Models\Penyakit::class, 'herbal_penyakit');
-    
+        return $this->belongsToMany(Penyakit::class, 'herbal_penyakit');
     }
 }

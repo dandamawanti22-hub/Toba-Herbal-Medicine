@@ -2,11 +2,10 @@
 
 @section('content')
 
-<div class="container mt-4">
+<div class="container-fluid mt-4">
 
-    <div class="card">
+    <div class="card p-3">
 
-        <!-- HEADER -->
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h4 class="mb-0">Data Penyakit</h4>
 
@@ -15,40 +14,66 @@
             </a>
         </div>
 
-        <!-- TABLE -->
         <div class="table-responsive">
             <table class="table table-bordered align-middle text-center">
-                
+
                 <thead class="table-dark">
                     <tr>
-                        <th width="5%">No</th>
-                        <th width="15%">Nama</th>
+                        <th>Kode</th>
+                        <th>Nama</th>
                         <th>Deskripsi</th>
-                        <th width="15%">Gambar</th>
-                        <th width="15%">Aksi</th>
+                        <th>Gejala</th>
+                        <th>Penyebab</th>
+                        <th>Pengobatan</th>
+                        <th>Pencegahan</th>
+                        <th>Gambar</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
 
                 <tbody>
                     @forelse($data as $item)
+
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
+                        <td>
+                            <strong>{{ $item->kode_penyakit }}</strong>
+                        </td>
 
                         <td>{{ $item->nama_penyakit }}</td>
 
                         <td style="text-align:left;">
-                            {{ $item->deskripsi }}
+                            {{ Str::limit($item->deskripsi, 80) }}
+                        </td>
+
+                        <td style="text-align:left;">
+                            {{ Str::limit($item->gejala, 80) }}
+                        </td>
+
+                        <td style="text-align:left;">
+                            {{ Str::limit($item->penyebab, 80) }}
+                        </td>
+
+                        <td style="text-align:left;">
+                            {{ Str::limit($item->pengobatan, 80) }}
+                        </td>
+
+                        <td style="text-align:left;">
+                            {{ Str::limit($item->pencegahan, 80) }}
                         </td>
 
                         <td>
                             @if($item->gambar)
-                                <img src="{{ asset('images/' . $item->gambar) }}">
+                                <img 
+                                    src="{{ asset('images/' . $item->gambar) }}" 
+                                    width="80">
+                            @else
+                                Tidak ada gambar
                             @endif
                         </td>
 
                         <td>
                             <a href="/admin/penyakit/{{ $item->id }}/edit"
-                               class="btn btn-warning btn-sm">
+                               class="btn btn-warning btn-sm mb-1">
                                 Edit
                             </a>
 
@@ -65,10 +90,13 @@
                             </form>
                         </td>
                     </tr>
+
                     @empty
+
                     <tr>
-                        <td colspan="5">Belum ada data</td>
+                        <td colspan="9">Belum ada data</td>
                     </tr>
+
                     @endforelse
                 </tbody>
 
