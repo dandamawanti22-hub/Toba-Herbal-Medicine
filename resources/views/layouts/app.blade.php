@@ -42,6 +42,15 @@
         <a href="/admin/herbal/create">Tambah Data</a>
     </div>
 
+    <!-- BAHAN -->
+    <div onclick="toggleMenu('bahan')" class="menu">
+        Data Bahan
+    </div>
+    <div id="bahan" class="submenu {{ request()->is('admin/bahan*') ? 'show' : '' }}">
+        <a href="/admin/bahan">Lihat Data</a>
+        <a href="/admin/bahan/create">Tambah Data</a>
+    </div>
+
     <!-- RESEP -->
     <div onclick="toggleMenu('resep')" class="menu">
         Data Resep
@@ -49,15 +58,6 @@
     <div id="resep" class="submenu {{ request()->is('admin/resep*') ? 'show' : '' }}">
         <a href="/admin/resep">Lihat Data</a>
         <a href="/admin/resep/create">Tambah Data</a>
-    </div>
-
-    <!-- ✅ TAMBAHAN BARU: BAHAN -->
-    <div onclick="toggleMenu('bahan')" class="menu">
-        Data Bahan
-    </div>
-    <div id="bahan" class="submenu {{ request()->is('admin/bahan*') ? 'show' : '' }}">
-        <a href="/admin/bahan">Lihat Data</a>
-        <a href="/admin/bahan/create">Tambah Data</a>
     </div>
 
     <hr>
